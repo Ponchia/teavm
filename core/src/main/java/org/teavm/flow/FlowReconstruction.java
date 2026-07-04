@@ -178,8 +178,9 @@ public class FlowReconstruction {
             } else {
                 while (localTryCatch != commonTryCatch) {
                     if (tryCatchLevels.isEmpty()) {
-                        var containingTryCatchNode = new FlowTreeNode.TryCatch(localTryCatch.handler,
-                                localTryCatch.exceptionType);
+                        var containingTryCatchNode = new FlowTreeNode.TryCatch(
+                                program.basicBlockAt(nodeOrder[currentIndex]),
+                                localTryCatch.handler, localTryCatch.exceptionType);
                         containingTryCatchNode.tryBody.addAll(target);
                         target.clear();
                         target.add(containingTryCatchNode);
@@ -201,7 +202,8 @@ public class FlowReconstruction {
             tryCatchLevels.add(target);
             FlowTreeNode.TryCatch firstCreatedTryCatchNode = null;
             while (tryCatch != localTryCatch) {
-                var newTryCatchNode = new FlowTreeNode.TryCatch(tryCatch.handler, tryCatch.exceptionType);
+                var newTryCatchNode = new FlowTreeNode.TryCatch(program.basicBlockAt(nodeOrder[currentIndex]),
+                        tryCatch.handler, tryCatch.exceptionType);
                 if (currentTryCatchNode != null) {
                     newTryCatchNode.tryBody.add(currentTryCatchNode);
                     tryCatchLevels.add(newTryCatchNode.tryBody);
