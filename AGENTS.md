@@ -1,3 +1,5 @@
+<!-- bronto-docs: upstream-derived -->
+
 This is a JVM bytecode AOT compiler infrastructure, mainly targeted for the browser.
 Currently, three backends are supported:
 
@@ -85,3 +87,9 @@ Links there omit `.md` extension, e.g. `foo/bar` instead of `foo/bar.md`.
 * When tests fails due to broken wasm file, you can find *.wast.html file right near the generated module.
   The HTML file also has `(; hex offset ;)` comment before each instruction to easily navigate through the file.
   Don't use any external validators, they don't support Wasm GC proposal fully.
+
+# Bronto house check
+
+Run `repo-instruction-audit --repo .` after changing agent instructions or
+documentation routing. This fork is upstream-derived; TeaVM user documentation
+continues to live in the separate `teavm-site` checkout.
